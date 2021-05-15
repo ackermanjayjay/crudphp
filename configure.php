@@ -77,4 +77,23 @@ function cari($keyword)
 
                 return query($query);
 }
+
+function register($data)
+{
+    global $koneksi;
+$username=strtolower 
+(stripslashes($data["username"]));
+$password =mysqli_real_escape_string($koneksi,$data["password"]);
+$password2 = mysqli_real_escape_string($koneksi,$data["password2"]);
+
+//cek konfirm
+if($password !== $password2)
+{
+    echo "<script>
+    alert('Password tidak cocok!');
+    </script>";
+    var_dump($data);
+    return false;
+}
+}
 ?>

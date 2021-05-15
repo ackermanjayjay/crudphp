@@ -2,9 +2,18 @@
 
 // koneksi require jangan lupa
 require 'configure.php';
+
 //get data 
+
+
 $mahasiswa= query("SELECT * FROM mahasiswa");
 
+
+//tombol cari ditekan
+if(isset($_POST["cari"]))
+{
+  $mahasiswa = cari($_POST["ketik"]);
+}
 
 
 ?>
@@ -22,8 +31,19 @@ $mahasiswa= query("SELECT * FROM mahasiswa");
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Admin</h1>
    
+<form action="" method="post">
+
+<input type="text" name="ketik"autofocus placeholder="Masukkan nama yang dituju" autocomplete="off">
+
+<button type="submit" name="cari">Cari
+</button>
+
+
+
+</form>
+
  <?php $i=1; ?>
  <?php foreach($mahasiswa as $mhs):?>
     <table class="table">

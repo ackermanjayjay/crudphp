@@ -2,18 +2,20 @@
 require 'configure.php';
 if(isset($_POST["register"]))
 {
-    if(register($_POST)>0)
+    if(register($_POST) > 0)
     {
         echo "<script>
       alert('data berhasil di register!');
       </script>";
+   
+ 
     }
     else{
         echo "<script>
         alert('data gagal di register!');
         </script>";
         echo mysqli_error($koneksi);
-        var_dump(register);
+       
         
     }
 }
@@ -45,7 +47,7 @@ if(isset($_POST["register"]))
     <input type="password" name="password2" id="password2">
     </li>
     <li>
-    <button type="register">register
+    <button type="register" name="register">register
     </button>
     </li>
     </ul>

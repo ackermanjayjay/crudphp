@@ -81,10 +81,22 @@ function cari($keyword)
 function register($data)
 {
     global $koneksi;
-$username=strtolower 
-(stripslashes($data["username"]));
+$username=strtolower(stripslashes($data["username"]));
 $password =mysqli_real_escape_string($koneksi,$data["password"]);
 $password2 = mysqli_real_escape_string($koneksi,$data["password2"]);
+
+//cek user or not yet
+
+$hasil= mysqli_query($koneksi,"SELECT username FROM users WHERE username='$username'");
+
+if(mysqli_fetch_assoc($hasil))
+{
+    echo "<script>
+    alert('USER DAH TERDAFTAR!');
+    </script>";
+    return false;
+}
+
 
 //cek konfirm
 if($password !== $password2)
@@ -92,8 +104,22 @@ if($password !== $password2)
     echo "<script>
     alert('Password tidak cocok!');
     </script>";
-    var_dump($data);
+
     return false;
 }
+    //enkripsi pass
+    $password=password_hash($password,PASSWORD_DEFAULT);
+    
+    //tambahkan ke database
+    //INSERT INTO `users` (`id`, `username`, `password`)
+
+
+
+// return mysqli_affected_rows($koneksi);
+    $nambah= "INSERT INTO users VALUES('','$username','$password)";
+    mysqli_query($koneksi,$nambah);
+    
+    return mysqli_affected_rows($koneksi);
+
 }
 ?>

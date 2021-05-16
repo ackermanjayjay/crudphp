@@ -1,5 +1,14 @@
 <?php
+session_start();
+// koneksi require jangan lupa
+
+if(!isset($_SESSION["login"]))
+{
+  header("Location:login.php");
+  exit;
+}
 //koneksi db 
+
 require 'configure.php';
 if(isset($_POST["submit"]))
 {

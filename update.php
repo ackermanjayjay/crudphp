@@ -1,5 +1,13 @@
 <?php
 //koneksi db 
+session_start();
+// koneksi require jangan lupa
+
+if(!isset($_SESSION["login"]))
+{
+  header("Location:login.php");
+  exit;
+}
 require 'configure.php';
 
 //ambil data di url

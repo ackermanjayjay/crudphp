@@ -1,4 +1,12 @@
 <?php
+// session_start();
+// // koneksi require jangan lupa
+
+// if(!isset($_SESSION["login"]))
+// {
+//   header("Location:login.php");
+//   exit;
+// }
 require 'configure.php';
 if(isset($_POST["register"]))
 {
@@ -7,7 +15,7 @@ if(isset($_POST["register"]))
         echo "<script>
       alert('data berhasil di register!');
       </script>";
-   
+      header("Location:login.php");
  
     }
     else{

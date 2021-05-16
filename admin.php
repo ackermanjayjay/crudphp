@@ -1,9 +1,13 @@
 <?php
-
+session_start();
 // koneksi require jangan lupa
-require 'configure.php';
 
-//get data 
+if(!isset($_SESSION["login"]))
+{
+  header("Location:login.php");
+  exit;
+}
+require 'configure.php';
 
 
 $mahasiswa= query("SELECT * FROM mahasiswa");
@@ -31,6 +35,7 @@ if(isset($_POST["cari"]))
     <title>Hello, world!</title>
   </head>
   <body>
+<button type=submit a href="logout.php">Logout</a>
     <h1>Admin</h1>
    
 <form action="" method="post">

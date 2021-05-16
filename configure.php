@@ -9,7 +9,7 @@ function query($query)
     global $koneksi;
     $ambil= mysqli_query($koneksi,$query);
     $rows=[];
-    while($row = mysqli_fetch_assoc($ambil) )
+    while($row = mysqli_fetch_assoc($ambil))
     {
         $rows[]= $row;
     }
@@ -81,9 +81,9 @@ function cari($keyword)
 function register($data)
 {
     global $koneksi;
-$username=strtolower(stripslashes($data["username"]));
-$password =mysqli_real_escape_string($koneksi,$data["password"]);
-$password2 = mysqli_real_escape_string($koneksi,$data["password2"]);
+    $username = strtolower(stripslashes($data["username"]));
+	$password = mysqli_real_escape_string($koneksi, $data["password"]);
+	$password2 = mysqli_real_escape_string($koneksi, $data["password2"]);
 
 //cek user or not yet
 
@@ -92,7 +92,7 @@ $hasil= mysqli_query($koneksi,"SELECT username FROM users WHERE username='$usern
 if(mysqli_fetch_assoc($hasil))
 {
     echo "<script>
-    alert('USER DAH TERDAFTAR!');
+                    alert('USER DAH TERDAFTAR!');
     </script>";
     return false;
 }
@@ -102,7 +102,7 @@ if(mysqli_fetch_assoc($hasil))
 if($password !== $password2)
 {
     echo "<script>
-    alert('Password tidak cocok!');
+                     alert('Password tidak cocok!');
     </script>";
 
     return false;
@@ -110,14 +110,8 @@ if($password !== $password2)
     //enkripsi pass
     $password=password_hash($password,PASSWORD_DEFAULT);
     
-    //tambahkan ke database
-    //INSERT INTO `users` (`id`, `username`, `password`)
-
-
-
 // return mysqli_affected_rows($koneksi);
-    $nambah= "INSERT INTO users VALUES('','$username','$password)";
-    mysqli_query($koneksi,$nambah);
+   mysqli_query($koneksi, "INSERT INTO users VALUES(NULL,'$username','$password')");
     
     return mysqli_affected_rows($koneksi);
 

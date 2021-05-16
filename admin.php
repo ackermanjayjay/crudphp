@@ -35,9 +35,9 @@ if(isset($_POST["cari"]))
     <title>Hello, world!</title>
   </head>
   <body>
-<button type=submit a href="logout.php">Logout</a>
+
     <h1>Admin</h1>
-   
+    
 <form action="" method="post">
 
 <input type="text" name="ketik"autofocus placeholder="Masukkan nama yang dituju" autocomplete="off">
@@ -83,6 +83,7 @@ if(isset($_POST["cari"]))
   </tbody>
 
 </table>
+<a href="logout.php">Logout</a>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

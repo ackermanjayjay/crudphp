@@ -21,6 +21,10 @@ $hasil=mysqli_query($koneksi,"SELECT * FROM users WHERE
                     //cek pass
                     $pass=mysqli_fetch_assoc($hasil);
                     if(password_verify($password,$pass["password"])){
+
+                      //set session
+
+                      $_SESSION["login"]=true;
                         header("Location:admin.php");
                     exit;
                     }
